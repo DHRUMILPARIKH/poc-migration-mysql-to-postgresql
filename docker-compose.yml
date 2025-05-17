@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: my_Test
+    volumes:
+      - ./mysql-init:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+
+  postgres:
+    image: postgres:13
+    container_name: postgres-container
+    environment:
+      POSTGRES_PASSWORD: pgpass
+      POSTGRES_DB: my_Test_postgre
+    ports:
+      - "5432:5432"
+
+  pgloader:
+    image: dimitri/pgloader
+    container_name: pgloader-container
+    depends_on:
+      - mysql
+      - postgres
+    volumes:
+      - ./pgloader:/data
+    entrypoint: >
+      bash -c "sleep 10 &&
+               pgloader /data/migrate.load"
