@@ -6,7 +6,6 @@ services:
     container_name: mysql-container
     environment:
       MYSQL_ROOT_PASSWORD: rootpass
-      MYSQL_DATABASE: my_Test
     volumes:
       - ./mysql-init:/docker-entrypoint-initdb.d
     ports:
@@ -17,7 +16,8 @@ services:
     container_name: postgres-container
     environment:
       POSTGRES_PASSWORD: pgpass
-      POSTGRES_DB: my_Test_postgre
+    volumes:
+      - ./postgres-init:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
 
@@ -30,5 +30,5 @@ services:
     volumes:
       - ./pgloader:/data
     entrypoint: >
-      bash -c "sleep 10 &&
+      bash -c "sleep 15 &&
                pgloader /data/migrate.load"

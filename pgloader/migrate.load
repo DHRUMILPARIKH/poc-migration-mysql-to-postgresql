@@ -1,17 +1,3 @@
 LOAD DATABASE
-     FROM mysql://root:rootpass@mysql/my_Test
-     INTO postgresql://postgres:pgpass@postgres/my_Test_postgre
-
- WITH include no drop,
-      create tables,
-      create indexes,
-      reset sequences
-
- SET work_mem to '16MB',
-     maintenance_work_mem to '512 MB'
-
- CAST
-     type datetime to timestamp,
-     type date to date drop default drop not null using zero-dates-to-null
-
- ALTER SCHEMA 'my_Test' RENAME TO 'public';
+     FROM mysql://root:rootpass@mysql/sakila
+     INTO postgresql://postgres:pgpass@postgres/sakila;
