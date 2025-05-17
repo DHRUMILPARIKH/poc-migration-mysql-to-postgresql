@@ -55,3 +55,40 @@ pgloader-container  |        Install Comments          0          0             
 pgloader-container  | -----------------------  ---------  ---------  ---------  --------------
 pgloader-container  |       Total import time          ✓      47268     2.9 MB          2.769s
 pgloader-container exited with code 0
+
+
+Checking data:
+
+postgres=# \c sakila
+You are now connected to database "sakila" as user "postgres".
+sakila=# \dt
+             List of relations
+ Schema |     Name      | Type  |  Owner
+--------+---------------+-------+----------
+ sakila | actor         | table | postgres
+ sakila | address       | table | postgres
+ sakila | category      | table | postgres
+ sakila | city          | table | postgres
+ sakila | country       | table | postgres
+ sakila | customer      | table | postgres
+ sakila | film          | table | postgres
+ sakila | film_actor    | table | postgres
+ sakila | film_category | table | postgres
+ sakila | film_text     | table | postgres
+ sakila | inventory     | table | postgres
+ sakila | language      | table | postgres
+ sakila | payment       | table | postgres
+ sakila | rental        | table | postgres
+ sakila | staff         | table | postgres
+ sakila | store         | table | postgres
+(16 rows)
+
+sakila=# SELECT * FROM actor LIMIT 5;
+ actor_id | first_name |  last_name   |      last_update
+----------+------------+--------------+------------------------
+        1 | PENELOPE   | GUINESS      | 2006-02-15 04:34:33+00
+        2 | NICK       | WAHLBERG     | 2006-02-15 04:34:33+00
+        3 | ED         | CHASE        | 2006-02-15 04:34:33+00
+        4 | JENNIFER   | DAVIS        | 2006-02-15 04:34:33+00
+        5 | JOHNNY     | LOLLOBRIGIDA | 2006-02-15 04:34:33+00
+(5 rows)
